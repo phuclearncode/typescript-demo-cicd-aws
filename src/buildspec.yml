@@ -1,16 +1,17 @@
 version: 0.2
-
+ 
 phases:
   install:
     commands:
+      - echo Installing dependencies...
       - npm install
   build:
     commands:
-      - npm run build
-  post_build:
-    commands:
-      - cp -r build/* .
+      - echo Build started on `date`
+      - export NODE_OPTIONS=--openssl-legacy-provider   # Thêm dòng này để bypass OpenSSL 3 vấn đề
+      - npm run build                                   # Build project
+ 
 artifacts:
   files:
-    - '**/*'
-  base-directory: build
+    - appspec.yml
+    - build/**/*                                        # Lưu build output
