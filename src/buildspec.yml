@@ -7,6 +7,9 @@ phases:
   build:
     commands:
       - npm run build
+  post_build:
+    commands:
+      - cp -r build/* .
 artifacts:
   files:
     - '**/*'
